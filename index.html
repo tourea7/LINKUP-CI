@@ -611,7 +611,7 @@ function updatesb() {
   document.getElementById('uname').textContent = USER.prenom + ' ' + USER.nom;
   document.getElementById('urole').textContent = USER.role === 'admin' ? 'Administrateur' : 'Client';
   document.getElementById('h-welcome').textContent = 'Bonjour, ' + USER.prenom + ' 👋';
-  if (USER.role === 'admin') document.getElementById('n-admin').style.display = 'flex';
+  if (USER.role === 'admin') { document.getElementById('n-admin').style.display = 'flex'; } else { document.getElementById('n-admin').style.display = 'none'; }
 }
 
 // AUTH
@@ -1054,7 +1054,7 @@ function renderadmin() {
     var row = document.createElement('div');
     row.className = 'drow';
     row.style.gridTemplateColumns = '1.2fr 1fr 1fr 1fr 1fr 100px';
-    var client = ds.client ? ds.client.prenom+' '+ds.client.nom : '—';
+    var client = (ds.client && ds.client.prenom) ? ds.client.prenom+' '+ds.client.nom : (ds.prenom ? ds.prenom+' '+ds.nom : '—');
     row.innerHTML = '<div style="font-weight:700;font-size:12px">'+ds.reference+'</div>' +
       '<div style="font-size:13px">'+client+'</div>' +
       '<div>'+ds.type_entreprise+'</div>' +
