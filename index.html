@@ -555,11 +555,7 @@ function showview(id) { document.querySelectorAll('.view').forEach(function(v){v
 
 function gohome() { TOKEN ? godash('home') : showview('v-land'); }
 
-function goauth(tab) {
-  showview('v-auth');
-  switchtab(tab);
-  document.getElementById('aerr').style.display = 'none';
-}
+function goauth(tab) { var drop=document.getElementById('nav-drop'); if(drop) drop.style.display='none'; showview('v-auth'); switchtab(tab); document.getElementById('aerr').style.display = 'none'; }
 
 function switchtab(tab) {
   document.getElementById('f-login').style.display = tab === 'login' ? 'block' : 'none';
