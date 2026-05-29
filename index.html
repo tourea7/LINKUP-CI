@@ -115,7 +115,7 @@ h1,h2,h3{font-family:'Cabinet Grotesk',sans-serif;letter-spacing:-0.02em}
 .atab{flex:1;padding:8px;border-radius:7px;border:none;background:transparent;color:var(--text2);font-size:14px;font-weight:600;font-family:'Cabinet Grotesk',sans-serif;cursor:pointer;transition:all 0.2s}
 .atab.on{background:var(--or);color:white}
 .aerr{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:9px 13px;font-size:13px;color:#FCA5A5;margin-bottom:14px;display:none}
-@media(max-width:768px){.sidebar{display:none!important;position:fixed;top:0;left:0;height:100vh;z-index:200;width:260px}.sidebar.open{display:flex!important}#btn-close-menu{display:block!important}#mobile-topbar{display:flex!important}.main{margin-left:0!important;padding:16px!important}.metrics{grid-template-columns:1fr 1fr!important}.field-row{grid-template-columns:1fr!important}.topnav{padding:12px 16px!important}.home-services,.services-grid,[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}.hero-btns{flex-direction:column!important;width:100%!important}.wsteps{overflow-x:auto!important}#v-dash{flex-direction:column!important}#p-adetail>div:last-child,#p-profil>div:last-child{grid-template-columns:1fr!important}}</style>
+@media(max-width:768px){.sidebar{display:none!important;position:fixed;top:0;left:0;height:100vh;z-index:200;width:260px}.sidebar.open{display:flex!important}#btn-close-menu{display:block!important}#mobile-topbar{display:flex!important}.main{margin-left:0!important;padding:16px!important}.metrics{grid-template-columns:1fr 1fr!important}.field-row{grid-template-columns:1fr!important}.topnav{padding:12px 16px!important}.home-services,.services-grid,[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}.hero-btns{flex-direction:column!important;width:100%!important}.wsteps{overflow-x:auto!important}#v-dash{flex-direction:column!important}#p-adetail>div:last-child,#p-profil>div:last-child{grid-template-columns:1fr!important}}.nav-btns{display:flex}.nav-ham-show{display:none}@media(max-width:768px){.nav-btns{display:none!important}#nav-ham{display:block!important}}</style>
 </head>
 <body>
 
@@ -123,10 +123,7 @@ h1,h2,h3{font-family:'Cabinet Grotesk',sans-serif;letter-spacing:-0.02em}
 <div id="v-land" class="view active">
   <nav class="topnav">
     <div class="logo" onclick="gohome()"><div class="lmark">L</div><span class="lname">Linkup</span></div>
-    <div style="display:flex;gap:10px">
-      <button class="btn btn-ghost" onclick="goauth('login')">Se connecter</button>
-      <button class="btn btn-or" onclick="goauth('register')">Commencer →</button>
-    </div>
+    <div class="nav-btns" style="display:flex;gap:10px"><button class="btn btn-ghost" onclick="goauth('login')">Se connecter</button><button class="btn btn-or" onclick="goauth('register')">Commencer →</button></div><button id="nav-ham" onclick="toggleNavMob()" style="display:none;background:transparent;border:1px solid var(--border2);color:var(--text);padding:8px 14px;border-radius:8px;font-size:20px;cursor:pointer">☰</button><div id="nav-drop" style="display:none;position:fixed;top:65px;right:16px;background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:12px;z-index:999;min-width:200px"><button class="btn btn-ghost btn-full" style="margin-bottom:8px" onclick="goauth('login')">Se connecter</button><button class="btn btn-or btn-full" onclick="goauth('register')">Commencer →</button></div>
   </nav>
   <div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:90px 24px 70px;position:relative">
     <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse,rgba(244,89,13,0.14) 0%,transparent 70%);pointer-events:none"></div>
@@ -478,7 +475,7 @@ h1,h2,h3{font-family:'Cabinet Grotesk',sans-serif;letter-spacing:-0.02em}
 <div class="toast" id="toast"><span id="ti">✅</span><span id="tm">OK</span></div>
 
 <script>
-var API = 'https://linkup-ci-production.up.railway.app/api'; function toggleMenu(){var sb=document.querySelector('.sidebar');if(sb){sb.classList.toggle('open');}}
+var API = 'https://linkup-ci-production.up.railway.app/api'; function toggleMenu(){var sb=document.querySelector('.sidebar');if(sb){sb.classList.toggle('open');}} function toggleNavMob(){var ham=document.getElementById('nav-ham');var drop=document.getElementById('nav-drop');if(drop){drop.style.display=drop.style.display==='none'?'block':'none';}}
 var TOKEN = localStorage.getItem('lk_token');
 var USER = JSON.parse(localStorage.getItem('lk_user') || 'null');
 var selType = 'EI';
