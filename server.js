@@ -246,7 +246,7 @@ app.get('/api/dossiers/:id', protect, async (req, res) => {
 // PUT /api/dossiers/:id/statut (admin)
 app.put('/api/dossiers/:id/statut', protect, adminOnly, async (req, res) => {
   try {
-    const { statut, message } = req.body;
+    console.log('STATUT CHANGE:', req.params.id, req.body); const { statut, message } = req.body;
     const STATUTS = ['recu','en_cours','traitement','valide','livre'];
     if (!STATUTS.includes(statut)) return res.status(400).json({ success: false, message: 'Statut invalide.' });
 
