@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV !== 'production') { require('dotenv').config(); }
+if (process.env.NODE_ENV !== 'production') { require('dotenv').config(); } const nodemailer = require('nodemailer'); const transporter = nodemailer.createTransport({ service: 'gmail', auth: {   user: process.env.GMAIL_USER,   pass: process.env.GMAIL_PASS } }); async function sendEmail(to, subject, html) { try {   await transporter.sendMail({ from: process.env.GMAIL_USER, to, subject, html });   console.log('Email envoyé à ' + to); } catch(e) { console.error('Email error:', e.message); } }
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
@@ -263,8 +263,7 @@ app.put('/api/dossiers/:id/statut', protect, adminOnly, async (req, res) => {
     await supabase.from('notifications').insert({
       id: uuidv4(), user_id: dossier.user_id,
       title: `Dossier ${dossier.reference} mis à jour`,
-      message: entry.message, type: 'info', read: false, dossier_id: dossier.id
-    });
+      message: entry.message, type: 'info', read: false, dossier_id: dossier.id   });   const { data: client } = await supabase.from('users').select('email,prenom').eq('id', dossier.user_id).single();   if (client && client.email) {     const statutLabels = { en_cours: 'En cours de traitement', traitement: 'Soumis aux autorites', valide: 'Valide officiellement', livre: 'Documents prets' };     await sendEmail(client.email, 'Linkup - Mise a jour dossier ' + dossier.reference,       '<div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px"><div style="background:#F4590D;padding:20px;border-radius:10px 10px 0 0;text-align:center"><h1 style="color:white;margin:0">Linkup</h1></div><div style="background:#f9f9f9;padding:30px;border-radius:0 0 10px 10px"><p>Bonjour <b>' + client.prenom + '</b>,</p><p>Votre dossier <b>' + dossier.reference + '</b> a ete mis a jour.</p><div style="background:#F4590D;color:white;padding:15px;border-radius:8px;text-align:center;margin:20px 0"><b style="font-size:18px">' + (statutLabels[statut] || statut) + '</b></div><p>' + entry.message + '</p><p style="color:#666">Connectez-vous sur <a href="https://linkup-ci-production.up.railway.app">Linkup</a> pour suivre votre dossier.</p></div></div>'     );   }
 
     res.json({ success: true, dossier: data });
   } catch (err) {
