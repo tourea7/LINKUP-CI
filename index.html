@@ -551,11 +551,7 @@ function toast(icon, msg) {
   setTimeout(function(){el.classList.remove('show');}, 3200);
 }
 
-function showview(id) {
-  document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');});
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
+function showview(id) { document.querySelectorAll('.view').forEach(function(v){v.classList.remove('active');}); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); var drop=document.getElementById('nav-drop'); if(drop) drop.style.display='none'; }
 
 function gohome() { TOKEN ? godash('home') : showview('v-land'); }
 
