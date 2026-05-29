@@ -115,7 +115,7 @@ h1,h2,h3{font-family:'Cabinet Grotesk',sans-serif;letter-spacing:-0.02em}
 .atab{flex:1;padding:8px;border-radius:7px;border:none;background:transparent;color:var(--text2);font-size:14px;font-weight:600;font-family:'Cabinet Grotesk',sans-serif;cursor:pointer;transition:all 0.2s}
 .atab.on{background:var(--or);color:white}
 .aerr{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:9px 13px;font-size:13px;color:#FCA5A5;margin-bottom:14px;display:none}
-</style>
+@media(max-width:768px){.sidebar{display:none!important;position:fixed;top:0;left:0;height:100vh;z-index:200;width:260px}.sidebar.open{display:flex!important}#btn-close-menu{display:block!important}#mobile-topbar{display:flex!important}.main{margin-left:0!important;padding:16px!important}.metrics{grid-template-columns:1fr 1fr!important}.field-row{grid-template-columns:1fr!important}.topnav{padding:12px 16px!important}.home-services,.services-grid{grid-template-columns:1fr!important}.hero-btns{flex-direction:column!important;width:100%!important}.wsteps{overflow-x:auto!important}#v-dash{flex-direction:column!important}#p-adetail>div:last-child,#p-profil>div:last-child{grid-template-columns:1fr!important}}</style>
 </head>
 <body>
 
@@ -209,7 +209,7 @@ h1,h2,h3{font-family:'Cabinet Grotesk',sans-serif;letter-spacing:-0.02em}
 <!-- DASHBOARD -->
 <div id="v-dash" class="view" style="flex-direction:row">
   <div class="sidebar">
-    <div class="sb-logo"><div class="logo" onclick="godash('home')"><div class="lmark" style="width:28px;height:28px;font-size:14px">L</div><span class="lname" style="font-size:16px">Linkup</span></div></div>
+    <div class="sb-logo" style="display:flex;align-items:center;justify-content:space-between"><div class="logo" onclick="godash('home')"><div class="lmark" style="width:28px;height:28px;font-size:14px">L</div><span class="lname" style="font-size:16px">Linkup</span></div><button id="btn-close-menu" onclick="toggleMenu()" style="display:none;background:transparent;border:none;color:var(--text2);font-size:20px;cursor:pointer">✕</button></div>
     <div class="navlink on" id="n-home" onclick="gopage('home')"><span style="font-size:16px">⊞</span> Accueil</div>
     <div class="navlink" id="n-creation" onclick="gopage('creation')"><span style="font-size:16px">🏢</span> Créer une entreprise</div>
     <div class="navlink" id="n-dossiers" onclick="gopage('dossiers')"><span style="font-size:16px">📋</span> Mes dossiers</div>
@@ -225,7 +225,7 @@ h1,h2,h3{font-family:'Cabinet Grotesk',sans-serif;letter-spacing:-0.02em}
       <div class="navlink" style="margin-top:8px;color:var(--red);padding-left:0" onclick="dologout()"><span style="font-size:16px">🚪</span> Déconnexion</div>
     </div>
   </div>
-  <div class="main">
+  <div class="main"><div id="mobile-topbar" style="display:none;align-items:center;gap:12px;padding:12px 0;margin-bottom:16px;border-bottom:1px solid var(--border)"><button onclick="toggleMenu()" style="background:transparent;border:none;color:var(--text);font-size:22px;cursor:pointer">☰</button><div class="logo" onclick="godash('home')"><div class="lmark" style="width:26px;height:26px;font-size:13px">L</div><span class="lname" style="font-size:15px">Linkup</span></div></div>
 
     <!-- HOME -->
     <div id="p-home" class="page active">
@@ -478,7 +478,7 @@ h1,h2,h3{font-family:'Cabinet Grotesk',sans-serif;letter-spacing:-0.02em}
 <div class="toast" id="toast"><span id="ti">✅</span><span id="tm">OK</span></div>
 
 <script>
-var API = 'https://linkup-ci-production.up.railway.app/api';
+var API = 'https://linkup-ci-production.up.railway.app/api'; function toggleMenu(){var sb=document.querySelector('.sidebar');if(sb){sb.classList.toggle('open');}}
 var TOKEN = localStorage.getItem('lk_token');
 var USER = JSON.parse(localStorage.getItem('lk_user') || 'null');
 var selType = 'EI';
